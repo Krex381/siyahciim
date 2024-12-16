@@ -1,13 +1,27 @@
 async function updateViewCount() {
     try {
         const response = await fetch('https://siyahciim.pages.dev/');
-        const count = await response.text();
+        const text = await response.text();
         const viewCountElement = document.getElementById('viewCount');
+        
         if (viewCountElement) {
-            viewCountElement.textContent = parseInt(count).toLocaleString();
+            // Validate if response is a valid number
+            const count = parseInt(text);
+            if (!isNaN(count)) {
+                viewCountElement.textContent = count.toLocaleString();
+            } else {
+                // Fallback to 0 if not a valid number
+                viewCountElement.textContent = '0';
+                console.warn('Received invalid count:', text);
+            }
         }
     } catch (error) {
         console.error('Error updating view count:', error);
+        // Set fallback value on error
+        const viewCountElement = document.getElementById('viewCount');
+        if (viewCountElement) {
+            viewCountElement.textContent = '0';
+        }
     }
 }
 
