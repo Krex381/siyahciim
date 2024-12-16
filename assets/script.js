@@ -5,19 +5,19 @@ async function updateViewCount() {
         const viewCountElement = document.getElementById('viewCount');
         
         if (viewCountElement) {
-            // Validate if response is a valid number
+
             const count = parseInt(text);
             if (!isNaN(count)) {
                 viewCountElement.textContent = count.toLocaleString();
             } else {
-                // Fallback to 0 if not a valid number
+
                 viewCountElement.textContent = '0';
                 console.warn('Received invalid count:', text);
             }
         }
     } catch (error) {
         console.error('Error updating view count:', error);
-        // Set fallback value on error
+
         const viewCountElement = document.getElementById('viewCount');
         if (viewCountElement) {
             viewCountElement.textContent = '0';
@@ -130,8 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         currentLang = currentLang === 'en' ? 'tr' : 'en';
         langIndicator.textContent = currentLang.toUpperCase();
-        
-        // Update content
+
         elements.forEach(element => {
             const newText = element.getAttribute(`data-${currentLang}`);
             if (newText) {
@@ -172,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Add transition styles
+
         const style = document.createElement('style');
         style.textContent = `
             [data-tr], [data-en] {
